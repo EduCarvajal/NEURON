@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEURON | Páginas Web con IA y Automatizaciones en Ecuador</title>
+    <meta name="description" content="NEURON crea páginas web con inteligencia artificial y automatizaciones que trabajan por ti. Descubre PROPIA, nuestra solución para inmobiliarias. ¡Auditoría gratuita!">
+    <meta name="keywords" content="diseño web ia ecuador, páginas web inteligentes, automatizaciones empresas, neuron, propia inmobiliarias">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul-profundo: #0F172A;
+            --azul-medio: #1E293B;
+            --neon-cian: #00E5FF;
+            --blanco: #FFFFFF;
+            --gris-claro: #F1F5F9;
+            --gris-texto: #94A3B8;
+            --verde-exito: #10B981;
+            --sombra: 0 20px 50px rgba(0,0,0,0.15);
+            --sombra-neon: 0 0 30px rgba(0,229,255,0.3);
+            --transicion: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            color: var(--azul-profundo);
+            line-height: 1.7;
+            overflow-x: hidden;
+            background: var(--blanco);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ===== NAVEGACION ===== */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,229,255,0.1);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+        }
+
+        .logo-isotipo {
+            width: 42px;
+            height: 42px;
+            background: var(--neon-cian);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 1.4rem;
+            color: var(--azul-profundo);
+            letter-spacing: -1px;
+        }
+
+        .logo-texto {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--blanco);
+            letter-spacing: -0.5px;
+        }
+        .logo-texto span { font-weight: 400; color: var(--neon-cian); }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+        .nav-links a {
+            color: var(--blanco);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: var(--transicion);
+            position: relative;
+            padding: 0.3rem 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--neon-cian);
+            transition: width 0.3s;
+            box-shadow: var(--sombra-neon);
+        }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a:hover { color: var(--neon-cian); }
+
+        .btn-nav {
+            background: var(--neon-cian);
+            color: var(--azul-profundo) !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 700 !important;
+            letter-spacing: 0.3px;
+            box-shadow: 0 0 20px rgba(0,229,255,0.25);
+        }
+        .btn-nav:hover {
+            box-shadow: 0 0 35px rgba(0,229,255,0.5) !important;
+            transform: translateY(-2px);
+            color: var(--azul-profundo) !important;
+        }
+        .btn-nav::after { display: none; }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            width: 28px;
+            height: 2.5px;
+            background: var(--blanco);
+            transition: var(--transicion);
+            border-radius: 3px;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 5rem;
+            background: var(--azul-profundo);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle at center, rgba(0,229,255,0.08) 0%, transparent 70%);
+            top: -300px;
+            right: -300px;
+            border-radius: 50%;
+            animation: flotarHero 10s ease-in-out infinite;
+        }
+
+        @keyframes flotarHero {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-30px, 20px) scale(1.05); }
+            66% { transform: translate(20px, -30px) scale(0.95); }
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-texto h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            color: var(--blanco);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+        .hero-texto h1 span {
+            background: linear-gradient(135deg, var(--neon-cian), #00B8D4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-texto .subtitulo {
+            font-size: 1.25rem;
+            color: var(--gris-texto);
+            margin-bottom: 2.5rem;
+            border-left: 3px solid var(--neon-cian);
+            padding-left: 1.5rem;
+            font-weight: 400;
+        }
+
+        .hero-badges {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+        .badge {
+            background: rgba(0,229,255,0.1);
+            border: 1px solid rgba(0,229,255,0.3);
+            color: var(--neon-cian);
+            padding: 0.5rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .hero-botones {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .btn-primario {
+            background: var(--neon-cian);
+            color: var(--azul-profundo);
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transicion);
+            box-shadow: 0 0 25px rgba(0,229,255,0.3);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.3px;
+        }
+        .btn-primario:hover {
+            box-shadow: 0 0 45px rgba(0,229,255,0.55);
+            transform: translateY(-3px);
+        }
+
+        .btn-secundario {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.3);
+            color: var(--blanco);
+            padding: 0.9rem 2.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transicion);
+            cursor: pointer;
+        }
+        .btn-secundario:hover {
+            border-color: var(--neon-cian);
+            color: var(--neon-cian);
+            box-shadow: var(--sombra-neon);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-mockup {
+            width: 100%;
+            max-width: 500px;
+            aspect-ratio: 4/3;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-mockup::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-cian), #00B8D4, var(--neon-cian));
+            animation: barraMovil 3s linear infinite;
+        }
+        @keyframes barraMovil {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        .mockup-linea {
+            height: 10px;
+            background: rgba(255,255,255,0.06);
+            border-radius: 5px;
+            width: 100%;
+        }
+        .mockup-linea.corta { width: 60%; }
+        .mockup-linea.cian {
+            background: var(--neon-cian);
+            opacity: 0.4;
+            width: 40%;
+        }
+
+        /* ===== SECCIONES GENERALES ===== */
+        section { padding: 6rem 2rem; }
+        .contenedor { max-width: 1200px; margin: 0 auto; }
+
+        .seccion-etiqueta {
+            display: inline-block;
+            background: rgba(0,229,255,0.08);
+            color: #00B8D4;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(0,229,255,0.2);
+        }
+
+        .seccion-titulo {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--azul-profundo);
+            letter-spacing: -1px;
+            line-height: 1.2;
+        }
+        .seccion-titulo span { color: #00B8D4; }
+
+        .seccion-subtitulo {
+            color: var(--gris-texto);
+            font-size: 1.15rem;
+            margin-bottom: 3rem;
+            max-width: 600px;
+        }
+
+        /* ===== SERVICIOS ===== */
+        .servicios { background: var(--gris-claro); }
+
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .servicio-card {
+            background: var(--blanco);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--sombra);
+            transition: var(--transicion);
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        .servicio-card:hover {
+            border-color: var(--neon-cian);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0,229,255,0.1);
+        }
+        .servicio-card::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, rgba(0,229,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        .servicio-icono {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+        .servicio-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            position: relative;
+            z-index: 1;
+        }
+        .servicio-card p {
+            color: var(--gris-texto);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ===== PROPIA ===== */
+        .propia-section {
+            background: var(--azul-profundo);
+            color: var(--blanco);
+            position: relative;
+            overflow: hidden;
+        }
+        .propia-section::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0,229,255,0.06) 0%, transparent 70%);
+            bottom: -200px;
+            left: -200px;
+            border-radius: 50%;
+        }
+        .propia-section .seccion-titulo { color: var(--blanco); }
+        .propia-section .seccion-subtitulo { color: var(--gris-texto); }
+
+        .propia-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            padding: 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+            backdrop-filter: blur(10px);
+        }
+        .propia-logo {
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            color: var(--neon-cian);
+        }
+        .propia-logo span { font-weight: 300; }
+        .propia-card h3 { font-size: 2rem; font-weight: 800; margin-bottom: 1rem; }
+        .propia-card ul {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        .propia-card ul li {
+            padding: 0.6rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--gris-texto);
+        }
+        .propia-card ul li::before {
+            content: '◆';
+            color: var(--neon-cian);
+            font-size: 0.7rem;
+        }
+
+        /* ===== PAQUETES ===== */
+        .paquetes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .paquete-card {
+            background: var(--blanco);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--sombra);
+            border: 2px solid transparent;
+            transition: var(--transicion);
+            position: relative;
+        }
+        .paquete-card:hover { border-color: var(--neon-cian); transform: translateY(-5px); }
+        .paquete-card.destacado {
+            border-color: var(--neon-cian);
+            box-shadow: 0 0 40px rgba(0,229,255,0.1);
+        }
+        .paquete-etiqueta {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--neon-cian);
+            color: var(--azul-profundo);
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.8rem;
+        }
+        .paquete-card h3 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .paquete-precio {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--azul-profundo);
+            margin: 1rem 0;
+        }
+        .paquete-precio small { font-size: 0.9rem; font-weight: 400; color: var(--gris-texto); }
+        .paquete-card ul { list-style: none; margin: 1.5rem 0; }
+        .paquete-card ul li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .paquete-card ul li::before { content: '✓'; color: var(--verde-exito); font-weight: 700; }
+
+        /* ===== PROCESO ===== */
+        .proceso { background: var(--gris-claro); }
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
+            position: relative;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 45px;
+            left: 5%;
+            width: 90%;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-cian), #00B8D4);
+            z-index: 0;
+            opacity: 0.3;
+        }
+        .paso { text-align: center; z-index: 1; flex: 1; min-width: 140px; }
+        .paso-numero {
+            width: 90px;
+            height: 90px;
+            background: var(--blanco);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--azul-profundo);
+            border: 2px solid var(--neon-cian);
+            transition: var(--transicion);
+            box-shadow: var(--sombra);
+        }
+        .paso:hover .paso-numero {
+            background: var(--neon-cian);
+            box-shadow: var(--sombra-neon);
+        }
+        .paso h4 { font-weight: 700; margin-bottom: 0.3rem; font-size: 1.1rem; }
+        .paso p { font-size: 0.85rem; color: var(--gris-texto); }
+
+        /* ===== TESTIMONIOS ===== */
+        .testimonios-scroll {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 1rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .testimonio-card {
+            min-width: 350px;
+            background: var(--blanco);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--sombra);
+            scroll-snap-align: start;
+            border-left: 4px solid var(--neon-cian);
+        }
+        .testimonio-estrellas { color: #F59E0B; font-size: 1.2rem; margin-bottom: 1rem; }
+        .testimonio-cita { font-style: italic; margin-bottom: 1.5rem; color: var(--gris-texto); }
+        .testimonio-autor { display: flex; align-items: center; gap: 1rem; }
+        .testimonio-avatar {
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: var(--azul-profundo);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--neon-cian); font-weight: 700;
+        }
+
+        /* ===== CTA FINAL ===== */
+        .cta-final {
+            background: linear-gradient(135deg, var(--azul-profundo), #0a1020);
+            color: var(--blanco);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-final::before {
+            content: '';
+            position: absolute;
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(0,229,255,0.1) 0%, transparent 70%);
+            top: -100px; right: -100px;
+        }
+        .cta-final .contenedor { position: relative; z-index: 1; }
+        .cta-final h2 { font-size: 2.8rem; font-weight: 900; margin-bottom: 1rem; }
+        .cta-final .formulario {
+            display: flex; gap: 1rem; max-width: 650px; margin: 2rem auto 0;
+            flex-wrap: wrap; justify-content: center;
+        }
+        .cta-final input {
+            flex: 1 1 200px; padding: 1rem 1.5rem; border-radius: 50px;
+            border: 1px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.05);
+            color: var(--blanco); font-size: 1rem; outline: none; font-family: 'Inter', sans-serif;
+        }
+        .cta-final input::placeholder { color: var(--gris-texto); }
+        .cta-final input:focus { border-color: var(--neon-cian); }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: #080d1a;
+            color: var(--blanco);
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .footer-logo { font-size: 2rem; font-weight: 900; margin-bottom: 1rem; letter-spacing: -1px; }
+        .footer-logo span { color: var(--neon-cian); font-weight: 300; }
+        footer a { color: var(--neon-cian); text-decoration: none; }
+
+        /* ===== WHATSAPP ===== */
+        .whatsapp-float {
+            position: fixed; bottom: 25px; right: 25px;
+            background: #25D366; color: white;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; z-index: 999;
+            box-shadow: 0 5px 25px rgba(37,211,102,0.4);
+            text-decoration: none; transition: var(--transicion);
+            animation: pulso 2s infinite;
+        }
+        @keyframes pulso {
+            0%{box-shadow:0 0 0 0 rgba(37,211,102,0.5)} 
+            70%{box-shadow:0 0 0 20px rgba(37,211,102,0)} 
+            100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 968px) {
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-texto .subtitulo { border-left: none; padding-left: 0; }
+            .hero-badges, .hero-botones { justify-content: center; }
+            .hero-mockup { max-width: 350px; margin: 0 auto; }
+            .propia-card { grid-template-columns: 1fr; }
+            .timeline::before { display: none; }
+            .hero-texto h1 { font-size: 2.5rem; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .nav-links.mostrar {
+                display: flex; flex-direction: column;
+                position: absolute; top: 100%; left: 0; width: 100%;
+                background: var(--azul-profundo); padding: 2rem; gap: 1.5rem; text-align: center;
+            }
+            .menu-toggle { display: flex; }
+            section { padding: 3rem 1rem; }
+            .seccion-titulo { font-size: 2rem; }
+            .hero-texto h1 { font-size: 2rem; }
+            .cta-final h2 { font-size: 2rem; }
+            .testimonio-card { min-width: 280px; }
+            .cta-final .formulario { flex-direction: column; align-items: center; }
+            .cta-final input { width: 100%; max-width: 350px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVEGACION ==================== -->
+    <nav class="nav">
+        <a href="#" class="logo-container">
+            <div class="logo-isotipo">N</div>
+            <div class="logo-texto">NEUR<span>ON</span></div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#propia">PROPIA</a></li>
+            <li><a href="#paquetes">Planes</a></li>
+            <li><a href="#proceso">Proceso</a></li>
+            <li><a href="#cta" class="btn-nav">Auditoría Gratis</a></li>
+        </ul>
+        <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero">
+        <div class="hero-grid">
+            <div class="hero-texto">
+                <h1>Creamos <span>páginas web con IA</span> y automatizaciones que trabajan por ti</h1>
+                <p class="subtitulo">Diseño web interactivo, automatizaciones inteligentes y soluciones con inteligencia artificial para empresas en Ecuador.</p>
+                <div class="hero-badges">
+                    <span class="badge">🧠 IA Generativa</span>
+                    <span class="badge">⚙️ Automatizaciones</span>
+                    <span class="badge">🎨 Diseño Web</span>
+                </div>
+                <div class="hero-botones">
+                    <a href="#cta" class="btn-primario">Quiero mi Auditoría Web</a>
+                    <a href="#servicios" class="btn-secundario">Ver Servicios</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-mockup">
+                    <div class="mockup-linea"></div>
+                    <div class="mockup-linea corta"></div>
+                    <div class="mockup-linea cian"></div>
+                    <div class="mockup-linea"></div>
+                    <div class="mockup-linea corta"></div>
+                    <div class="mockup-linea cian"></div>
+                    <div class="mockup-linea"></div>
+                    <div class="mockup-linea corta"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== SERVICIOS ==================== -->
+    <section class="servicios" id="servicios">
+        <div class="contenedor">
+            <span class="seccion-etiqueta">🧠 Lo que hacemos</span>
+            <h2 class="seccion-titulo">Tecnología <span>inteligente</span> para tu negocio</h2>
+            <p class="seccion-subtitulo">Combinamos inteligencia artificial, diseño web profesional y automatizaciones para que tu empresa crezca en piloto automático.</p>
+            <div class="servicios-grid">
+                <div class="servicio-card">
+                    <span class="servicio-icono">🧠</span>
+                    <h3>Webs con Inteligencia Artificial</h3>
+                    <p>Páginas web generadas y optimizadas con IA. Más rápidas de crear, más inteligentes para convertir visitas en clientes.</p>
+                </div>
+                <div class="servicio-card">
+                    <span class="servicio-icono">⚙️</span>
+                    <h3>Automatizaciones a Medida</h3>
+                    <p>Creamos sistemas que eliminan tareas repetitivas. Desde respuestas automáticas hasta flujos de trabajo completos.</p>
+                </div>
+                <div class="servicio-card">
+                    <span class="servicio-icono">🎨</span>
+                    <h3>Diseño Web Interactivo</h3>
+                    <p>Experiencias digitales que cautivan. Diseño mobile-first, animaciones fluidas y optimización de conversión.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROPIA ==================== -->
+    <section class="propia-section" id="propia">
+        <div class="contenedor">
+            <span class="seccion-etiqueta">🏠 Producto Estrella</span>
+            <h2 class="seccion-titulo">Conoce <span style="color:var(--neon-cian);">PROP</span>IA</h2>
+            <p class="seccion-subtitulo">La automatización inteligente diseñada exclusivamente para el sector inmobiliario ecuatoriano.</p>
+            <div class="propia-card">
+                <div>
+                    <div class="propia-logo">PROP<span>IA</span></div>
+                    <h3>Automatización Inteligente para Inmobiliarias</h3>
+                    <p style="color:var(--gris-texto); margin-bottom:1rem;">PROPIA gestiona leads, programa visitas, responde consultas y mantiene tu catálogo actualizado. Todo automatizado con IA.</p>
+                    <ul>
+                        <li>Captura y calificación automática de leads</li>
+                        <li>Respuestas instantáneas 24/7 a consultas</li>
+                        <li>Programación de visitas sin intervención humana</li>
+                        <li>Actualización automática de catálogo de propiedades</li>
+                        <li>Reportes y seguimiento en tiempo real</li>
+                    </ul>
+                    <a href="#cta" class="btn-primario" style="margin-top:1rem;">Quiero una demo de PROPIA</a>
+                </div>
+                <div style="text-align:center; font-size:8rem;">🏢</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PAQUETES ==================== -->
+    <section id="paquetes">
+        <div class="contenedor">
+            <span class="seccion-etiqueta">💻 Planes</span>
+            <h2 class="seccion-titulo">Inversión <span>clara</span>, resultados reales</h2>
+            <p class="seccion-subtitulo">Elige el plan perfecto para tu etapa. Todos incluyen diseño interactivo potenciado con IA.</p>
+            <div class="paquetes-grid">
+                <div class="paquete-card">
+                    <h3>🧠 IA Esencial</h3>
+                    <p style="color:var(--gris-texto);">Landing page potenciada con IA</p>
+                    <div class="paquete-precio">$450 <small>USD</small></div>
+                    <ul>
+                        <li>One-page con IA generativa</li>
+                        <li>Mobile-first optimizado</li>
+                        <li>WhatsApp + formulario inteligente</li>
+                        <li>1 año hosting + dominio .ec</li>
+                    </ul>
+                    <a href="#cta" class="btn-primario" style="display:block;text-align:center;">Elegir Plan</a>
+                </div>
+                <div class="paquete-card destacado">
+                    <span class="paquete-etiqueta">⭐ Recomendado</span>
+                    <h3>⚙️ IA Profesional</h3>
+                    <p style="color:var(--gris-texto);">Web completa + automatizaciones</p>
+                    <div class="paquete-precio">$1,200 <small>USD</small></div>
+                    <ul>
+                        <li>Sitio multi-página (hasta 6)</li>
+                        <li>SEO on-page y local</li>
+                        <li>Automatización de leads + CRM</li>
+                        <li>3 meses de soporte</li>
+                    </ul>
+                    <a href="#cta" class="btn-primario" style="display:block;text-align:center;">Elegir Plan</a>
+                </div>
+                <div class="paquete-card">
+                    <h3>🛒 IA Élite</h3>
+                    <p style="color:var(--gris-texto);">E-commerce con IA + automatización</p>
+                    <div class="paquete-precio">$2,500 <small>USD</small></div>
+                    <ul>
+                        <li>Tienda online completa con IA</li>
+                        <li>Pagos Datafast / Payphone</li>
+                        <li>Recuperación de carritos</li>
+                        <li>6 meses de soporte VIP</li>
+                    </ul>
+                    <a href="#cta" class="btn-primario" style="display:block;text-align:center;">Elegir Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== PROCESO ==================== -->
+    <section class="proceso" id="proceso">
+        <div class="contenedor">
+            <span class="seccion-etiqueta">🔄 Cómo trabajamos</span>
+            <h2 class="seccion-titulo">Del <span>brief</span> al lanzamiento</h2>
+            <p class="seccion-subtitulo">Un proceso ágil y transparente. La IA acelera, nosotros afinamos.</p>
+            <div class="timeline">
+                <div class="paso"><div class="paso-numero">1</div><h4>Estrategia</h4><p>Analizamos tu negocio con IA</p></div>
+                <div class="paso"><div class="paso-numero">2</div><h4>Diseño IA</h4><p>Generamos el diseño óptimo</p></div>
+                <div class="paso"><div class="paso-numero">3</div><h4>Desarrollo</h4><p>Programamos y automatizamos</p></div>
+                <div class="paso"><div class="paso-numero">4</div><h4>Revisión</h4><p>Ajustes hasta tu 100%</p></div>
+                <div class="paso"><div class="paso-numero">5</div><h4>Lanzamiento</h4><p>Web al aire + capacitación</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== TESTIMONIOS ==================== -->
+    <section>
+        <div class="contenedor">
+            <span class="seccion-etiqueta">💬 Testimonios</span>
+            <h2 class="seccion-titulo">Resultados <span>reales</span></h2>
+            <div class="testimonios-scroll">
+                <div class="testimonio-card">
+                    <div class="testimonio-estrellas">★★★★★</div>
+                    <p class="testimonio-cita">"NEURON nos creó una web que realmente convierte. La IA hizo el proceso rapidísimo y el resultado superó lo que imaginábamos."</p>
+                    <div class="testimonio-autor">
+                        <div class="testimonio-avatar">MC</div>
+                        <div><strong>María Calderón</strong><br><small style="color:var(--gris-texto);">Consultora Estratégica</small></div>
+                    </div>
+                </div>
+                <div class="testimonio-card">
+                    <div class="testimonio-estrellas">★★★★★</div>
+                    <p class="testimonio-cita">"PROPIA cambió nuestra inmobiliaria. Los leads se califican solos y las visitas se agendan sin que movamos un dedo."</p>
+                    <div class="testimonio-autor">
+                        <div class="testimonio-avatar">RV</div>
+                        <div><strong>Ricardo Vega</strong><br><small style="color:var(--gris-texto);">Inmobiliaria Vega</small></div>
+                    </div>
+                </div>
+                <div class="testimonio-card">
+                    <div class="testimonio-estrellas">★★★★★</div>
+                    <p class="testimonio-cita">"Gracias al SEO local que implementaron, ahora aparecemos primeros cuando buscan abogados en Quito."</p>
+                    <div class="testimonio-autor">
+                        <div class="testimonio-avatar">AG</div>
+                        <div><strong>Andrea Gómez</strong><br><small style="color:var(--gris-texto);">Firma Legal</small></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CTA FINAL ==================== -->
+    <section class="cta-final" id="cta">
+        <div class="contenedor">
+            <span class="seccion-etiqueta" style="background:rgba(0,229,255,0.15); border-color:rgba(0,229,255,0.3);">🚀 Empieza hoy</span>
+            <h2>¿Listo para una web que <span style="color:var(--neon-cian);">trabaje por ti</span>?</h2>
+            <p style="opacity:0.8; max-width:500px; margin:0 auto 1rem;">Solicita tu <strong>Auditoría Web Gratuita</strong>. Te mostramos el potencial de tu negocio con IA en menos de 24h.</p>
+            <form class="formulario" id="formularioLead">
+                <input type="text" placeholder="Tu nombre" required>
+                <input type="text" placeholder="Tu correo o WhatsApp" required>
+                <input type="text" placeholder="¿Tienes web? (URL)">
+                <button type="submit" class="btn-primario" style="flex:0 0 auto;">Quiero mi Diagnóstico</button>
+            </form>
+            <p style="margin-top:1rem; font-size:0.8rem; opacity:0.5;">Sin spam. Solo valor real para tu negocio.</p>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer>
+        <div class="footer-logo">NEUR<span>ON</span></div>
+        <p style="margin-bottom:0.5rem;"><strong>Tecnología que trabaja por ti</strong></p>
+        <p style="color:var(--gris-texto); margin-bottom:1rem;">
+            📧 <a href="mailto:hola@neuron.ec">hola@neuron.ec</a> &nbsp;|&nbsp; 📱 <a href="https://wa.me/593985950354">+593 98 595 0354</a>
+        </p>
+        <p style="color:var(--gris-texto);">© 2026 NEURON. Todos los derechos reservados. Hecho con 🧠 en Ecuador 🇪🇨</p>
+    </footer>
+
+    <!-- ==================== WHATSAPP FLOTANTE ==================== -->
+    <a href="https://wa.me/593985950354" class="whatsapp-float" target="_blank" aria-label="WhatsApp">💬</a>
+
+    <!-- ==================== SCRIPTS ==================== -->
+    <script>
+        // Menú hamburguesa
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navLinks').classList.toggle('mostrar');
+        });
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => document.getElementById('navLinks').classList.remove('mostrar'));
+        });
+
+        // Simulación envío formulario
+        document.getElementById('formularioLead').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = this.querySelector('button');
+            const original = btn.textContent;
+            btn.textContent = '✅ ¡Recibido! Te contactamos';
+            btn.style.background = '#10B981';
+            btn.style.boxShadow = '0 0 25px rgba(16,185,129,0.4)';
+            btn.disabled = true;
+            setTimeout(() => {
+                btn.textContent = original;
+                btn.style.background = '';
+                btn.style.boxShadow = '';
+                btn.disabled = false;
+                this.reset();
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
