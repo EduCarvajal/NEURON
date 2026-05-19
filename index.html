@@ -874,12 +874,13 @@
             <span class="seccion-etiqueta" style="background:rgba(0,229,255,0.15); border-color:rgba(0,229,255,0.3);">🚀 Empieza hoy</span>
             <h2>¿Listo para una web que <span style="color:var(--neon-cian);">trabaje por ti</span>?</h2>
             <p style="opacity:0.8; max-width:500px; margin:0 auto 1rem;">Solicita tu <strong>Auditoría Web Gratuita</strong>. Te mostramos el potencial de tu negocio con IA en menos de 24h.</p>
-            <form class="formulario" id="formularioLead">
-                <input type="text" placeholder="Tu nombre" required>
-                <input type="text" placeholder="Tu correo o WhatsApp" required>
-                <input type="text" placeholder="¿Tienes web? (URL)">
-                <button type="submit" class="btn-primario" style="flex:0 0 auto;">Quiero mi Diagnóstico</button>
-            </form>
+           <form class="formulario" id="formularioLead" onsubmit="enviarFormulario(event)">
+    <input type="text" id="nombre" placeholder="Tu nombre" required>
+    <input type="text" id="contacto" placeholder="Tu correo o WhatsApp" required>
+    <input type="text" id="web" placeholder="¿Tienes web? (URL)">
+    <button type="submit" class="btn-primario" style="flex:0 0 auto;">Quiero mi Diagnóstico</button>
+    <p id="mensajeForm" style="margin-top:1rem; font-weight:600; text-align:center;"></p>
+</form>
             <p style="margin-top:1rem; font-size:0.8rem; opacity:0.5;">Sin spam. Solo valor real para tu negocio.</p>
         </div>
     </section>
@@ -908,22 +909,74 @@
         });
 
         // Simulación envío formulario
-        document.getElementById('formularioLead').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = this.querySelector('button');
-            const original = btn.textContent;
-            btn.textContent = '✅ ¡Recibido! Te contactamos';
-            btn.style.background = '#10B981';
-            btn.style.boxShadow = '0 0 25px rgba(16,185,129,0.4)';
-            btn.disabled = true;
-            setTimeout(() => {
-                btn.textContent = original;
-                btn.style.background = '';
-                btn.style.boxShadow = '';
-                btn.disabled = false;
-                this.reset();
-            }, 4000);
+       // Envío real del formulario a Google Sheets
+async function enviarFormulario(e) {
+    e.preventDefault();
+    
+    const btn = e.target.querySelector('button');
+    const msg = document.getElementById('mensajeForm');
+    const original = btn.textContent;
+    
+    // Cambiar botón a estado "cargando"
+    btn.textContent = '⏳ Enviando...';
+    btn.disabled = true;
+    msg.textContent = '';
+
+    // Obtener los datos del formulario
+    const datos = {
+        nombre: document.getElementById('nombre').value.trim(),
+        contacto: document.getElementById('contacto').value.trim(),
+        web: document.getElementById('web').value.trim() || 'No especificada'
+    };
+
+    // Validar que los campos obligatorios no estén vacíos
+    if (!datos.nombre || !datos.contacto) {
+        msg.textContent = '⚠️ Por favor completa todos los campos obligatorios.';
+        msg.style.color = '#F59E0B';
+        btn.textContent = original;
+        btn.disabled = false;
+        return;
+    }
+
+    // URL DE TU GOOGLE APPS SCRIPT - ¡¡PÉGALA AQUÍ!!
+    const urlScript = 'https://script.google.com/macros/s/AKfycbwnoveRkY0B98adneFkuiXNEW--gZW06mj1WQ_s055vNeunmjFBIgjjD8sO2oqxkW0RTg/exec';
+
+    try {
+        const respuesta = await fetch(urlScript, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(datos)
         });
+
+        // Éxito
+        msg.textContent = '✅ ¡Recibido! Te contactaremos en menos de 24 horas.';
+        msg.style.color = '#10B981';
+        btn.textContent = '✅ Enviado con éxito';
+        btn.style.background = '#10B981';
+        btn.style.boxShadow = '0 0 25px rgba(16,185,129,0.4)';
+        
+        // Limpiar formulario después de 2 segundos
+        setTimeout(() => {
+            e.target.reset();
+            btn.textContent = original;
+            btn.style.background = '';
+            btn.style.boxShadow = '';
+            btn.disabled = false;
+            msg.textContent = '';
+        }, 3000);
+
+    } catch (error) {
+        // Error de conexión
+        console.error('Error:', error);
+        msg.textContent = '❌ Error de conexión. Por favor escríbenos directo a hola@neuron.ec';
+        msg.style.color = '#EF4444';
+        btn.textContent = original;
+        btn.disabled = false;
+    }
+}
     </script>
 </body>
 </html>
